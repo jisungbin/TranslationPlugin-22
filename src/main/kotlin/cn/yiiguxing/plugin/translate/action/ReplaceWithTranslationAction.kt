@@ -413,7 +413,7 @@ class ReplaceWithTranslationAction : AutoSelectAction(true, NON_WHITESPACE_CONDI
             }
 
             if (translation.targetLang != Lang.ENGLISH || language == PlainTextLanguage.INSTANCE) {
-                return items.filter { it.isNotBlank() }
+                return items.filter { it.isNotBlank() }.map { "$it\n${translation.original}" }
             }
 
             val camel = LinkedHashSet<String>()
