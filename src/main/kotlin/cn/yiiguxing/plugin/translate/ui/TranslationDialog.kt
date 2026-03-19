@@ -636,7 +636,11 @@ class TranslationDialog(
             inputTTSButton.isEnabled = tts.isSupportLanguage(translation.srcLang)
             translationTTSButton.isEnabled = tts.isSupportLanguage(translation.targetLang)
         }
-        translationText = translation.translation ?: ""
+        translationText = if (!translation.translation.isNullOrEmpty()) {
+            "${translation.translation}\n${translation.original}"
+        } else {
+            ""
+        }
         updateOnTranslation(translation)
     }
 

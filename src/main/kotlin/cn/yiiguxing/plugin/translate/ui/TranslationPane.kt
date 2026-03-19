@@ -381,7 +381,12 @@ abstract class TranslationPane<T : JComponent>(
 
         updateOriginalViewer(translation)
         spellComponent.spell = translation.spell
-        updateViewer(translationViewer, translationComponent, translation.translation)
+        val translationWithOriginal = if (!translation.translation.isNullOrEmpty()) {
+            "${translation.translation}\n${translation.original}"
+        } else {
+            translation.translation
+        }
+        updateViewer(translationViewer, translationComponent, translationWithOriginal)
 
         originalTransliterationLabel.apply {
             val srcTransliteration = translation.srcTransliteration
