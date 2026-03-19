@@ -180,6 +180,7 @@ private fun Element.isEmptyParagraph(): Boolean = "p".equals(tagName(), true) &&
 
 private fun DocumentationTranslator.translateDocumentationInner(document: Document, language: Language?) {
     val body = document.body()
+    val originalContent = body.selectFirst(CSS_QUERY_CONTENT)?.clone()
     val definition = body.selectFirst(CSS_QUERY_DEFINITION)
     val definitions = definition
         ?.previousElementSiblings()
@@ -219,6 +220,15 @@ private fun DocumentationTranslator.translateDocumentationInner(document: Docume
     }
     ignoredElements?.let { ignoredElementProvider.restoreElements(translatedBody, it) }
     definitions?.let { translatedBody.prependChildren(it) }
+    if (originalContent != null) {
+        val translatedContent = translatedBody.selectFirst(CSS_QUERY_CONTENT)
+        if (translatedContent != null) {
+            translatedContent.appendElement("hr")
+            for (child in originalContent.children()) {
+                translatedContent.appendChild(child.clone())
+            }
+        }
+    }
     body.replaceWith(translatedBody)
 }
 
@@ -238,6 +248,10 @@ private fun Translator.translateDocumentationInner(document: Document) {
 
     val contentEl = Element("div").addClass("content")
     translation.lines().forEach { contentEl.appendElement("p").appendText(it) }
+    if (translation.isNotEmpty() && formatted.isNotEmpty()) {
+        contentEl.appendElement("hr")
+        formatted.lines().forEach { contentEl.appendElement("p").appendText(it) }
+    }
     newBody.appendChild(contentEl)
     body.replaceWith(newBody)
 }
