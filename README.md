@@ -1,4 +1,4 @@
-# [![TranslationPlugin][plugin-logo]][gh:translation-plugin] TranslationPlugin
+# [![TranslationPlugin][plugin-logo]][gh:translation-plugin] TranslationPlugin 22
 
 <img width="1008" height="677" alt="image" src="https://github.com/user-attachments/assets/aaf86ae9-6645-4d05-b7b4-1e5a6ab265d6" />
 
