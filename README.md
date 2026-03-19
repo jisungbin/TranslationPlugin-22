@@ -1,5 +1,8 @@
 # [![TranslationPlugin][plugin-logo]][gh:translation-plugin] TranslationPlugin
 
+<img width="1008" height="677" alt="image" src="https://github.com/user-attachments/assets/aaf86ae9-6645-4d05-b7b4-1e5a6ab265d6" />
+
+
 [![Plugin Homepage][badge:plugin-homepage]][plugin-homepage]
 [![Build Status][badge:build]][gh:workflows-build]
 [![License][badge:license]][gh:license]
